@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+
 const PaypalIcon = () => {
   return (
     <Box sx={{width: "32px", height: "25px"}}>

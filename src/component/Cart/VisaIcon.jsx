@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+
 const VisAIcon = () => {
   return (
     <Box sx={{width: "32px", height: "25px"}}>

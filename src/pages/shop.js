@@ -60,7 +60,7 @@ const Shop = () => {
         dispatch(filterActions.price(filters.PRICE));
         dispatch(filterActions.strap(filters.STRAP));
         dispatch(filterActions.filter())
-    }, [filters])
+    }, [filters, dispatch])
 
     return (
         <Box sx={{ p: {xs: 1, sm: 2, md: 3} }}>

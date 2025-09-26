@@ -15,6 +15,7 @@ import { Watches } from "@/store/watches";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
 import { Fragment } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { grey } from "@mui/material/colors";
@@ -56,7 +57,7 @@ const Sidebar = ({ open, close, anchor }) => {
                                         <Typography
                                             variant="subtitle2"
                                             color={router.pathname == "/" ? "primary.main" : "grey.main"}
-                                            fontSize={{xs: 12, sm: 14}} // Made font size responsive
+                                            fontSize={{xs: 12, sm: 14}}
                                         >
                                             {text}
                                         </Typography>
@@ -85,44 +86,46 @@ const Sidebar = ({ open, close, anchor }) => {
 
                         {cartValue.length > 0 && (
                             <Box>
-                                <ListItem sx={{p: 0}}> // Adjusted padding
+                                <ListItem sx={{p: 0}}>
                                     <List
                                         sx={{
                                             borderBottom: 1,
                                             borderColor: `${grey[300]} !important`,
-                                            width: "100%", // Ensure list takes full width
-                                            p: 0, // Removed extra padding
+                                            width: "100%",
+                                            p: 0,
                                         }}>
                                         {cartValue?.map((db, idx) => (
                                             <ListItem key={idx}>
-                                                <Stack direction="row" width={"100%"} alignItems="center" spacing={2}> // Added spacing
-                                                    <Box sx={{ width: {xs: "60px", sm: "80px"}, flexShrink: 0 }}> // Made width responsive and added flexShrink
-                                                        <img
+                                                <Stack direction="row" width={"100%"} alignItems="center" spacing={2}>
+                                                    <Box sx={{ width: {xs: "60px", sm: "80px"}, flexShrink: 0, position: "relative" }}>
+                                                        <Image
                                                             src={Watches[db]["src"][0]}
+                                                            alt={db}
+                                                            fill
                                                             style={{
-                                                                maxWidth: "100%",
+                                                                objectFit: "contain",
                                                             }}
                                                         />
                                                     </Box>
-                                                    <Stack flexGrow={1}> // Allow stack to grow
+                                                    <Stack flexGrow={1}>
                                                         <Typography
                                                             color="primary.main"
                                                             variant="subtitle1"
-                                                            fontSize={{xs: "0.9rem", sm: "1rem"}} // Made font size responsive
+                                                            fontSize={{xs: "0.9rem", sm: "1rem"}}
                                                         >
                                                             {db}
                                                         </Typography>
                                                         <Typography color="grey.main" variant="subtitle1"
-                                                            fontSize={{xs: "0.8rem", sm: "0.9rem"}} // Made font size responsive
+                                                            fontSize={{xs: "0.8rem", sm: "0.9rem"}}
                                                         >
                                                             1 x ₹{Watches[db]["price"]}
                                                         </Typography>
                                                     </Stack>
                                                     <ListItemIcon
                                                         onClick={() => dispatch(cartActions.removeItem({ name: db, price: + Watches[db]["price"] }))}
-                                                        sx={{minWidth: "fit-content"}} // Adjusted minWidth
+                                                        sx={{minWidth: "fit-content"}}
                                                     >
-                                                        <CloseIcon sx={{fontSize: {xs: "1rem", sm: "1.2rem"}}} /> // Made font size responsive
+                                                        <CloseIcon sx={{fontSize: {xs: "1rem", sm: "1.2rem"}}} />
                                                     </ListItemIcon>
                                                 </Stack>
                                             </ListItem>
@@ -135,13 +138,13 @@ const Sidebar = ({ open, close, anchor }) => {
                                             variant="subtitle1"
                                             color={grey[600]}
                                             fontWeight={800}
-                                            fontSize={{xs: "1rem", sm: "1.1rem"}} // Made font size responsive
+                                            fontSize={{xs: "1rem", sm: "1.1rem"}}
                                         >
                                             Subtotal:
                                             <Typography
-                                                component="span" // Changed to span to keep on same line
+                                                component="span"
                                                 color={"grey.main"}
-                                                ml={1} // Added margin left
+                                                ml={1}
                                             >
                                                 ₹{totalPrice}
                                             </Typography>
@@ -150,7 +153,7 @@ const Sidebar = ({ open, close, anchor }) => {
                                 </ListItem>
 
                                 <ListItem onClick={close}>
-                                    <Link href="/cart" style={{width: "100%", textDecoration: "none"}}> // Added full width
+                                    <Link href="/cart" style={{width: "100%", textDecoration: "none"}}>
                                         <ListItemButton
                                             sx={{
                                                 borderRadius: 1,
@@ -158,7 +161,7 @@ const Sidebar = ({ open, close, anchor }) => {
                                                 justifyContent: "center",
                                                 color: "#fff",
                                                 bgcolor: "#27d18b",
-                                                width: "100%", // Made width responsive
+                                                width: "100%",
                                                 mx: "auto",
                                                 "&:hover": {
                                                     bgcolor: "#78e6b9",
@@ -168,7 +171,7 @@ const Sidebar = ({ open, close, anchor }) => {
 
 
                                             <ListItemIcon
-                                                sx={{color: "#fff"}} // Ensure icon color is white
+                                                sx={{color: "#fff"}}
                                             >
                                                 <ShoppingCartOutlinedIcon />
                                             </ListItemIcon>
@@ -181,10 +184,10 @@ const Sidebar = ({ open, close, anchor }) => {
                         )}
 
                         {cartValue.length === 0 && (
-                            <ListItem sx={{justifyContent: "center"}}> // Adjusted padding and centered
+                            <ListItem sx={{justifyContent: "center"}}>
                                 <ListItemText
                                     disableTypography
-                                    sx={{ color: "grey.main", fontSize: {xs: "1rem", sm: "1.2rem"}, textAlign: "center" }} // Made font size responsive and centered text
+                                    sx={{ color: "grey.main", fontSize: {xs: "1rem", sm: "1.2rem"}, textAlign: "center" }}
                                 >
                                     No products in the cart.
                                 </ListItemText>

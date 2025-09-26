@@ -3,6 +3,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { Watches } from "../store/watches";
 import { useState, Fragment } from "react";
+import Image from "next/image";
 import { filterActions } from "@/store/filterSlice";
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -63,12 +64,17 @@ const Product = (name) => {
                 position: "relative",
                 border: ".2px solid grey"
             }}>
-            <img
-                src={item?.src[0]}
-                alt=""
-                width={"80%"}
-                onClick={() => handleClick()}
-            />
+            <Box sx={{ width: "80%", position: "relative", aspectRatio: "1/1" }}>
+                <Image
+                    src={item?.src[0]}
+                    alt={name.name}
+                    fill
+                    style={{
+                        objectFit: "contain",
+                    }}
+                    onClick={() => handleClick()}
+                />
+            </Box>
 
             <Typography variant='body2' // Always show description
                 color={"secondary.main"}

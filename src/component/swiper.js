@@ -104,7 +104,7 @@ const Swipers = () => {
                             SHOP NOW
                         </Button>
                     </Box>
-                    <Image src={Pic1} fill />
+                    <Image src={Pic1} fill alt="Slide image" />
                     {/* <img src={Pic1} alt="" /> */}
 
                 </Box>
@@ -170,7 +170,7 @@ const Swipers = () => {
                             SHOP NOW
                         </Button>
                     </Box>
-                    <Image src={Pic2} fill />
+                    <Image src={Pic2} fill alt="Slide image" />
                 </Box>
             </SwiperSlide>
             <SwiperSlide>
@@ -232,7 +232,7 @@ const Swipers = () => {
                             SHOP NOW
                         </Button>
                     </Box>
-                    <Image src={Pic3} fill />
+                    <Image src={Pic3} fill alt="Slide image" />
                 </Box>
             </SwiperSlide>
         </Swiper >

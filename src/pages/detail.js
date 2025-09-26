@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from "@/store/cartSlice";
 import { favoriteActions } from "@/store/favoriteSlice";
 import { useState, Fragment } from "react"
+import Image from "next/image"
 import CheckIcon from "@mui/icons-material/Check";
 const Detail = () => {
     const { Detail } = useSelector((state) => state.filter);
@@ -45,13 +46,13 @@ const Detail = () => {
                     <Stack sx={{ width: "100%", height: {xs: "auto", md: "calc(100vh - 150px)"}, position: "relative", flexDirection: {xs: "column", sm: "row"}, justifyContent: "center", alignItems: "center", gap: "1em", p: {xs: 2, sm: 0} }}>
                         <Stack sx={{width: {xs: "100%", sm: "35%"}, height: {xs: "200px", sm: "100%"}, flexDirection: {xs: "row", sm: "column"}, justifyContent: "center", alignItems: "center", gap: "1em"}}>
                             {item && item?.map((db, idx) => (
-                                <Box key={idx} sx={{ width: {xs: "80px", sm: "100%"}, height: {xs: "80px", sm: "100px"}, mb: {xs: "0", sm: "20px"}, display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }} onMouseOver={() => setNav1(idx)}>
-                                    <img src={db} alt={`thumbnail-${idx}`} style={{ width: "80%", height: "100%", objectFit: "contain", border: nav1 === idx ? "2px solid grey" : "none" }} />
+                                <Box key={idx} sx={{ width: {xs: "80px", sm: "100%"}, height: {xs: "80px", sm: "100px"}, mb: {xs: "0", sm: "20px"}, display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer", position: "relative" }} onMouseOver={() => setNav1(idx)}>
+                                    <Image src={db} alt={`thumbnail-${idx}`} fill style={{ objectFit: "contain", border: nav1 === idx ? "2px solid grey" : "none" }} />
                                 </Box>
                             ))}
                         </Stack>
-                        <Box sx={{ flexGrow: 1, width: {xs: "100%", sm: "60%"}, height: {xs: "300px", sm: "100%"} }}>
-                            {item && <img src={item[nav1]} alt="main-product" style={{ width: "100%", height: "100%", objectFit: "contain" }} />}
+                        <Box sx={{ flexGrow: 1, width: {xs: "100%", sm: "60%"}, height: {xs: "300px", sm: "100%"}, position: "relative" }}>
+                            {item && <Image src={item[nav1]} alt="main-product" fill style={{ objectFit: "contain" }} />}
                         </Box>
                     </Stack>
                 </Grid>
