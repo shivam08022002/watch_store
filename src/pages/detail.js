@@ -14,7 +14,7 @@ const Detail = () => {
     const { Detail } = useSelector((state) => state.filter);
     const item = Detail && Watches[Detail.name]["src"];
     const item1 = Watches[Detail.name];
-    const [nav1, setNav1] = useState(999);
+    const [nav1, setNav1] = useState(0);
     const [activeTab, setActiveTab] = useState("description");
 
     const handleChange = (event, newValue) => {
@@ -39,26 +39,30 @@ const Detail = () => {
         dispatch(favoriteActions.favorite(Detail))
     }
     return (
-        <div >
+        <Box >
             <Grid container >
                 <Grid item xs={12} sm={6} md={6}>
-                    <div style={{ width: "60%", height: "calc(100vh - 150px)", position: "relative", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                        {item && item?.map((db, idx) => (
-                            <div key={idx} style={{ width: "35%", height: "100px", marginBottom: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <img src={db} onMouseOver={() => setNav1(idx)} value={idx} style={{ width: "80%", height: "100%", objectFit: "contain" }} />
-                                <img src={db} style={{ display: `${nav1 === 999 ? "flex" : nav1 === idx ? "flex" : "none"}`, top: "0", left: "35%", width: "100%", position: "absolute", height: "100%", objectFit: "cover" }} />
-                            </div>
-                        ))}
-                    </div>
+                    <Stack sx={{ width: "100%", height: {xs: "auto", md: "calc(100vh - 150px)"}, position: "relative", flexDirection: {xs: "column", sm: "row"}, justifyContent: "center", alignItems: "center", gap: "1em", p: {xs: 2, sm: 0} }}>
+                        <Stack sx={{width: {xs: "100%", sm: "35%"}, height: {xs: "200px", sm: "100%"}, flexDirection: {xs: "row", sm: "column"}, justifyContent: "center", alignItems: "center", gap: "1em"}}>
+                            {item && item?.map((db, idx) => (
+                                <Box key={idx} sx={{ width: {xs: "80px", sm: "100%"}, height: {xs: "80px", sm: "100px"}, mb: {xs: "0", sm: "20px"}, display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }} onMouseOver={() => setNav1(idx)}>
+                                    <img src={db} alt={`thumbnail-${idx}`} style={{ width: "80%", height: "100%", objectFit: "contain", border: nav1 === idx ? "2px solid grey" : "none" }} />
+                                </Box>
+                            ))}
+                        </Stack>
+                        <Box sx={{ flexGrow: 1, width: {xs: "100%", sm: "60%"}, height: {xs: "300px", sm: "100%"} }}>
+                            {item && <img src={item[nav1]} alt="main-product" style={{ width: "100%", height: "100%", objectFit: "contain" }} />}
+                        </Box>
+                    </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} md={6} mt={14} p={2}>
+                <Grid item xs={12} sm={6} md={6} mt={{xs: 4, sm: 4, md: 14}} p={{xs: 2, sm: 2, md: 2}}>
                     <Typography variant="h4" my={1} fontWeight={600}>{Detail.name}</Typography>
                     <Typography variant="h6" my={1} fontWeight={600} color="primary.main">{item1?.price} ₹</Typography>
                     <Typography fontWeight={600} my={1} color="grey.main">SKU: N/A</Typography>
                     <Typography display={"flex"} my={1} fontWeight={600} color="grey.main">CATEGORIES: {item1?.categories?.map((db, idx) => <Typography key={idx} fontWeight={600} color="grey.main" display={"flex"} >&nbsp;{db}</Typography>)}</Typography>
                     <Typography display={"flex"} my={1} fontWeight={600} color="grey.main">TAGS: {item1?.tags?.map((db, idx) => <Typography fontWeight={600} color="grey.main" display={"flex"} key={idx}>&nbsp;{db}</Typography>)}</Typography>
                     <Typography fontWeight={400} mt={4} mb={10} color="grey.main">{item1?.description}</Typography>
-                    <Stack direction={"row"} gap={"3em"}>
+                    <Stack direction={{xs: "column", sm: "row"}} gap={"1em"}>
                         <Button
                             variant='text'
                             disableRipple
@@ -118,9 +122,9 @@ const Detail = () => {
 
 
             <Tabs value={activeTab} onChange={handleChange} centered aria-label="basic tabs example">
-                <Tab value="description" color="grey.main" label="DESCRIPTION" />
-                <Tab value="info" color="grey.main" label="ADDITIONAL INFORMATION" />
-                <Tab value="reviews" color="grey.main" label="REVIEW(1)" />
+                <Tab value="description" label="DESCRIPTION" />
+                <Tab value="info" label="ADDITIONAL INFORMATION" />
+                <Tab value="reviews" label="REVIEW(1)" />
             </Tabs>
             {activeTab === "description" && <DescriptionTab />}
             {activeTab === "info" && (
@@ -138,7 +142,7 @@ const Detail = () => {
             {/* {activeTab === "reviews" && <ReviewsTab name={item.toLowerCase()} />}  */}
 
             <Box>
-                <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ margin: "30px 0" }}>
+                <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ my: {xs: "15px", sm: "25px", md: "30px"} }}>
                     RECOMMENDED WATCHES
                 </Typography>
 
@@ -158,7 +162,7 @@ const Detail = () => {
                 </Grid>
 
             </Box>
-        </div>
+        </Box>
     )
 }
 

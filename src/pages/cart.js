@@ -34,14 +34,14 @@ const Cart = () => {
     const { cartValue, totalPrice } = useSelector((state) => state.cart);
     const [card, setCard] = useState("paypal");
     return (
-        <Box p={3}>
+        <Box p={{xs: 1, sm: 2, md: 3}}>
             <Paper >
                 {!cartValue.length && (
-                    <Box width={"100%"}>
+                    <Box width={{xs: "100%"}}>
                         <Typography variant="h6" p={2} color={"secondary.main"} fontWeight={700}>
                             Shopping Cart
                         </Typography>
-                        <Stack direction={"row"} width={"80%"}>
+                        <Stack direction={"row"} width={{xs: "100%", sm: "80%"}}>
                             <Box p={3} bgcolor={"#fdbc32"}>
                                 <PriorityHighIcon
                                     sx={{
@@ -132,7 +132,7 @@ const Cart = () => {
                                             display: "flex",
                                             p: {
                                                 sm: 3,
-                                                xs: 0,
+                                                xs: 1,
                                             },
                                             alignItems: "center",
                                             justifyContent: "space-between",
@@ -151,6 +151,7 @@ const Cart = () => {
                                                     sm: 100,
                                                     xs: 85,
                                                 },
+                                                height: "auto", // Ensure image scales properly
                                             }}
                                             image={Watches[item]["src"][0]}
                                             alt={item}
@@ -164,13 +165,10 @@ const Cart = () => {
                                                     sm: "1rem",
                                                     xs: "0.5rem",
                                                 },
-                                                width: {
-                                                    sm: "50%",
-                                                    xs: "auto",
-                                                },
+                                                flexGrow: 1, // Allow content to grow
                                                 padding: {
                                                     sm: 2,
-                                                    xs: 0,
+                                                    xs: 1,
                                                 },
                                             }}
                                         >
@@ -353,12 +351,13 @@ const Cart = () => {
                                             "& .MuiInputBase-input.MuiOutlinedInput-input": {
                                                 color: "#fbfbfb !important",
                                             },
+                                            width: "100%", // Ensure stack takes full width
                                         }}
                                     >
                                         <TextField
                                             color="white"
                                             sx={{
-                                                width: "100%",
+                                                width: { xs: "100%", sm: "100%" }, // Responsive width
                                             }}
                                             label="cardHolder's name"
                                             variant="outlined"
@@ -368,7 +367,7 @@ const Cart = () => {
                                         <TextField
                                             color="white"
                                             sx={{
-                                                width: "100%",
+                                                width: { xs: "100%", sm: "100%" }, // Responsive width
                                             }}
                                             label="Card Number"
                                             variant="outlined"
@@ -378,7 +377,7 @@ const Cart = () => {
                                         <TextField
                                             color="white"
                                             sx={{
-                                                width: "calc(50% - 1rem)",
+                                                width: { xs: "100%", sm: "calc(50% - 1rem)" }, // Responsive width
                                             }}
                                             label="Expiration"
                                             variant="outlined"
@@ -387,7 +386,7 @@ const Cart = () => {
                                         <TextField
                                             color="white"
                                             sx={{
-                                                width: "calc(50% - 1rem)",
+                                                width: { xs: "100%", sm: "calc(50% - 1rem)" }, // Responsive width
                                             }}
                                             label="CVC"
                                             variant="outlined"

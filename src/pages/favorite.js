@@ -24,19 +24,23 @@ const Favorite = () => {
     const { cartValue } = useSelector((state) => state.cart)
     const dispatch = useDispatch();
     return (
-        <Box>
-            <Typography variant="h4" fontWeight={600} m={3}>Whishlist</Typography>
+        <Box p={{xs: 1, sm: 2, md: 3}}>
+            <Typography variant="h4" fontWeight={600} m={{xs: 1, sm: 2, md: 3}}>Whishlist</Typography>
             <Grid container >
 
-                {favoriteValue.length === 0 ? <Typography
+                {favoriteValue.length === 0 ? 
+                <Box sx={{width: "100%", textAlign: "center", mt: {xs: 5, sm: 10, md: 10}, py: {xs: 3, sm: 5}}}>
+                    <Typography
                     variant="h6"
                     color={"secondary.main"}
                     fontWeight={600}
-                    mt={10}
-                    pl={3}
+                    // mt={10}
+                    // pl={3}
                 >
                     No products were added to the wishlist.
-                </Typography> :
+                </Typography>
+                </Box>
+                 :
                     favoriteValue.map((db, idx) => (
                         <Grid key={idx} xs={12} sm={6} md={3} p={1}>
                             <Card
@@ -50,7 +54,9 @@ const Favorite = () => {
                                     component={"img"}
                                     alt={db}
                                     sx={{
-                                        width: 150,
+                                        width: "100%", // Make width responsive
+                                        maxHeight: "200px", // Add max height to prevent excessive growth
+                                        objectFit: "contain",
                                         mx: "auto",
                                     }}
                                     image={Watches[db]["src"][0]}
@@ -93,10 +99,7 @@ const Favorite = () => {
 
                                 <CardActions
                                     sx={{
-                                        flexDirection: {
-                                            sm: "column",
-                                            xs: "row",
-                                        },
+                                        flexDirection: {xs: "column", sm: "row"}, // Responsive flex direction
                                         p: 0,
                                     }}
                                 >

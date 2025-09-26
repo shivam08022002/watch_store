@@ -17,7 +17,7 @@ const Product = (name) => {
     const isInFavorites = favoriteValue.indexOf(name.name) !== -1;
     const dispatch = useDispatch();
     const router = useRouter();
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false) // Removed show state
     const handleClick = () => {
         dispatch(filterActions.detail(name));
         router.push('/detail');
@@ -52,9 +52,17 @@ const Product = (name) => {
     }`
     return (
         <Box
-            onMouseOver={() => setShow(true)}
-            onMouseOut={() => setShow(false)}
-            style={{ display: "flex", flexDirection: "column", width: "100%", padding: "5px 0 15px 0", alignItems: "center", position: "relative", border: ".2px solid grey" }}>
+            // onMouseOver={() => setShow(true)} // Removed onMouseOver
+            // onMouseOut={() => setShow(false)} // Removed onMouseOut
+            sx={{
+                display: "flex",
+                flexDirection: "column", // Always column direction
+                width: "100%",
+                padding: "5px 0 15px 0",
+                alignItems: "center",
+                position: "relative",
+                border: ".2px solid grey"
+            }}>
             <img
                 src={item?.src[0]}
                 alt=""
@@ -62,25 +70,23 @@ const Product = (name) => {
                 onClick={() => handleClick()}
             />
 
-            {!show && <Typography variant='body2'
+            <Typography variant='body2' // Always show description
                 color={"secondary.main"}
                 fontWeight={700}
-                bottom={"15%"}
                 sx={{
-                    opacity: "0",
-                    animation: `${raise} 200ms linear 1 forwards `,
-                }} textAlign={"center"}>
+                    textAlign: "center",
+                    mt: 2, // Added margin top for spacing
+                }}>
                 {name?.name}
                 <br /> ₹{item?.price}
-            </Typography>}
+            </Typography>
 
-            {show && <Box
-
+            <Box // Always show buttons
                 sx={{
                     display: "flex",
-                    gap: "2em",
-                    opacity: "0",
-                    animation: `${raise1} 200ms linear 1 forwards`,
+                    gap: "1em", // Adjusted gap for better spacing
+                    mt: 2, // Added margin top for spacing
+                    flexDirection: { xs: "column", sm: "row" } // Responsive flexDirection
 
                 }}>
                 <Button
@@ -139,7 +145,7 @@ const Product = (name) => {
                     <FavoriteBorderOutlinedIcon
                     />
                 </Button>
-            </Box>}
+            </Box>
 
         </Box>
     )

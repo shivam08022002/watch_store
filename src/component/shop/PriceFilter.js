@@ -13,7 +13,7 @@ const PriceFilter = ({ onChange }) => {
 
     return (
         <Stack py={4}
-            px={2} style={{ backgroundColor: grey[100], marginTop: "1em" }}>
+            px={2} sx={{ backgroundColor: grey[100], marginTop: "1em" }}>
             <Typography fontWeight={600} color={"#000000"}>PRICE</Typography>
             <Slider
                 getAriaLabel={() => "Price range"}

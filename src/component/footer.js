@@ -11,19 +11,19 @@ const Footer = () => {
 
   
     return (
-        <div>
-            <Grid container gap={4}  justifyContent={"space-between"} sx={{ backgroundColor: "#F5F5F5",    padding: "4em 1em", borderBottom: "1px solid grey" }}>
-                <Grid item md={3.7} sm={11}>
+        <Box>
+            <Grid container gap={{xs: 2, sm: 3, md: 4}}  justifyContent={"space-between"} sx={{ backgroundColor: "#F5F5F5",    p: {xs: "2em 1em", sm: "3em 1em", md: "4em 1em"}, borderBottom: "1px solid grey" }}>
+                <Grid item xs={12} sm={12} md={3.7}>
                     <Typography>BE THE FIRST TO KNOW</Typography>
                     <Typography color={"grey.main"}>Get all the latest information on Events, Sales and Offers.</Typography>
                 </Grid>
-                <Grid item md={3.7} sm={11}>
-                    <TextField sx={{ backgroundColor: "#fff", width: "65%",  }} label={"YOUR EMAIL"} />
+                <Grid item xs={12} sm={12} md={3.7} display={"flex"} flexGrow={1}>
+                    <TextField sx={{ backgroundColor: "#fff", flexGrow: 1,  }} label={"YOUR EMAIL"} />
                     <Button
                         variant="outlined"
                         sx={{
                             borderRadius: "0",
-                            width: "30%",
+                            width: {md: "30%", sm: "35%", xs: "40%"},
                             height: "4em",
                             borderColor: grey[500],
                             color: "#eee",
@@ -38,13 +38,13 @@ const Footer = () => {
                         SUBSCRIBE
                     </Button>
                 </Grid>
-                <Grid item md={3.7} sm={11} textAlign={{md:"right",sm:"left"}}>
+                <Grid item xs={12} sm={12} md={3.7} textAlign={{md:"right",sm:"left"}}>
                     <Button
                         variant="outlined"
                         sx={{
                             minWidth: "40px",
                             borderRadius: "0",
-                            marginRight: "1em",
+                            mr: "1em",
                             borderColor: grey[500],
                             color: "secondary.main",
                             backgroundColor: "transparent",
@@ -63,7 +63,7 @@ const Footer = () => {
                         sx={{
                             minWidth: "40px",
                             borderRadius: "0",
-                            marginRight: "1em",
+                            mr: "1em",
                             borderColor: grey[500],
                             color: "secondary.main",
                             backgroundColor: "transparent",
@@ -100,10 +100,7 @@ const Footer = () => {
 
             <Grid
                 container
-                pl={{
-                    sm: "0",
-                    xs: 2,
-                }}
+                px={{xs: 2, sm: 3, md: 4}}
                 borderBottom={1}
                 borderTop={1}
                 borderColor={grey[500]}
@@ -119,22 +116,17 @@ const Footer = () => {
                         md: "center",
                         xs: "start",
                     }}
-                    pl={{
-                        md: 0,
-                        sm: 2,
-                        xs: 0,
-                    }}
-
+                    pl={{md: 0, sm: 2, xs: 0}}
                     display={"flex"}
                     flexDirection={"column"}
                 >
                     <Typography fontWeight={600}>CONTACT INFORMATION</Typography>
-                    <Typography color={"primary.main"} marginTop={1}>Address:</Typography>
+                    <Typography color={"primary.main"} mt={1}>Address:</Typography>
                     <Typography color={"grey.main"}>Sukhrali, M.G. Road </Typography>
                     <Typography color={"grey.main"}>Gurgaon - 122001</Typography>
-                    <Typography color={"primary.main"} marginTop={1}>Phone:</Typography>
-                    <Typography color={"grey.main"} variant="body2" fontWeight={600}>+95 8510881234</Typography>
-                    <Typography color={"primary.main"} marginTop={1}>Email:</Typography>
+                    <Typography color={"primary.main"} mt={1}>Phone:</Typography>
+                    <Typography color={"grey.main"} variant="body2" fontWeight={600}>+91 9793681026</Typography>
+                    <Typography color={"primary.main"} mt={1}>Email:</Typography>
                     <Typography color={"grey.main"} variant="body2" fontWeight={600}>lorem@lorem.com</Typography>
 
                 </Grid>
@@ -148,13 +140,13 @@ const Footer = () => {
                         md: "center",
                         xs: "start",
                     }}
-                    mt={4}
+                    mt={{xs: 2, sm: 4, md: 4}}
                     display={"flex"}
                     flexDirection={"column"}
                 >
                     <Typography fontWeight={600}>CUSTOM CARE</Typography>
                     {customer.map((db, idx) => (
-                        <Typography key={idx} color={"grey.main"} variant="body2" marginTop={2} fontWeight={600}>{db}</Typography>
+                        <Typography key={idx} color={"grey.main"} variant="body2" mt={2} fontWeight={600}>{db}</Typography>
                     ))}
                 </Grid>
 
@@ -168,18 +160,14 @@ const Footer = () => {
                         md: "center",
                         xs: "start",
                     }}
-                    mt={4}
-                    pl={{
-                        md: 0,
-                        sm: 2,
-                        xs: 0,
-                    }}
+                    mt={{xs: 2, sm: 4, md: 4}}
+                    pl={{md: 0, sm: 2, xs: 0}}
                     display={"flex"}
                     flexDirection={"column"}
                 >
                     <Typography fontWeight={600}>COMPANY</Typography>
                     {company.map((db, idx) => (
-                        <Typography key={idx} color={"grey.main"} variant="body2" marginTop={2} fontWeight={600}>{db}</Typography>
+                        <Typography key={idx} color={"grey.main"} variant="body2" mt={2} fontWeight={600}>{db}</Typography>
                     ))}
                 </Grid>
 
@@ -189,7 +177,7 @@ const Footer = () => {
                     sm={6}
                     xs={12}
                     container
-                    mt={4}
+                    mt={{xs: 2, sm: 4, md: 4}}
                     justifyContent={{
                         md: "center",
                         xs: "start",
@@ -200,16 +188,16 @@ const Footer = () => {
                     <Typography fontWeight={600}>SHOP</Typography>
                     {shop.map((db, idx) => (
 
-                        <Typography key={idx} color={"grey.main"} variant="body2" marginTop={2} fontWeight={600}>{db}</Typography>
+                        <Typography key={idx} color={"grey.main"} variant="body2" mt={2} fontWeight={600}>{db}</Typography>
                     ))}
                 </Grid>
 
             </Grid>
 
-            <div style={{ backgroundColor: "#F5F5F5", textAlign: "center", padding: "1.5em 0" }}>
+            <Box sx={{ backgroundColor: "#F5F5F5", textAlign: "center", py: "1.5em" }}>
                 <Typography color={"grey.main"}>2023©All Right Reserved</Typography>
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
 

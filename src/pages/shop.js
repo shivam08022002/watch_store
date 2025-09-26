@@ -63,10 +63,10 @@ const Shop = () => {
     }, [filters])
 
     return (
-        <div style={{ padding: "0 1em" }}>
+        <Box sx={{ p: {xs: 1, sm: 2, md: 3} }}>
             <Typography my={4} fontWeight={600} variant="h4" textAlign={"center"}>MEN&lsquo;S WATCHES</Typography>
-            <div style={{ display: "flex", justifyContent: "space-between", gap: "2em" }}>
-                <Box sx={{ width: "25%", top: "2em" }} position={{
+            <Box sx={{ display: "flex", justifyContent: "space-between", gap: {xs: "1em", sm: "1.5em", md: "2em"}, flexDirection: {xs: "column", sm: "row"} }}>
+                <Box sx={{ width: {xs: "100%", sm: "30%", md: "25%"}, top: "2em" }} position={{
                     sm: "sticky",
                     xs: "static",
                 }} >
@@ -76,15 +76,15 @@ const Shop = () => {
                     <ColorFilter onChange={onColorChange} />
                 </Box>
 
-                <Grid container>
+                <Grid container item xs={12} sm={9} md={9} spacing={2}>
                     {watches.map((db, idx) => (
                         <Grid key={idx} item xs={12} sm={6} md={4}>
                             <Product name={db} />
                         </Grid>
                     ))}
                 </Grid>
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
 

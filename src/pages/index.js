@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
 import Image from 'next/image'
 import { Typography, Divider, Box, Stack, Button, Grid } from "@mui/material";
-import Swiper from "../component/swiper";
+import dynamic from 'next/dynamic';
+const Swiper = dynamic(() => import("../component/swiper"), { ssr: false });
 import Product from "../component/product";
 import brand1 from "../assets/brand-logo-1.jpg";
 import brand2 from "../assets/brand-logo-2.jpg";
@@ -22,13 +23,13 @@ export default function Home() {
   const brand = [brand1, brand2, brand3, brand4, brand5, brand6];
   
   return (
-    <div>
+    <Box>
 
       <Swiper />
-      <Box display="flex" flexDirection={{sm:"column",md:"row",xs:"column"}}  gap={{sm:"1em",md:"2em",xs:"1em"}} justifyContent="space-between" marginY="50px">
+      <Box display="flex" flexDirection={{sm:"column",md:"row",xs:"column"}}  gap={{sm:"1em",md:"2em",xs:"1em"}} justifyContent="space-between" my={{xs: "20px", sm: "30px", md: "50px"}}>
         {brand?.map((db, idx) => (
           <Stack direction={{ sm: "column", md: "row", xs: "column" }} gap={{ sm: "1em", md: "1.5em", xs: "2em" }} key={idx} justifyContent={"center"} alignItems={"center"}>
-            <Image key={idx} src={db} alt="" />
+            <Image key={idx} src={db} alt="" style={{maxWidth: "100%", height: "auto"}}/>
           </Stack>
         ))}
       </Box>
@@ -38,7 +39,7 @@ export default function Home() {
           padding: ".3px"
         }}
       />
-      <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ margin: "30px 0" }}>
+      <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ my: {xs: "15px", sm: "25px", md: "30px"} }}>
         TREND WATCHES
       </Typography>
 
@@ -84,7 +85,7 @@ export default function Home() {
       </Grid>
 
 
-      <Box display={"flex"} flexDirection={{md:"row",sm:"column"}} width="100%" minHeight={"calc(100vh - 350px)"}>
+      <Box display={"flex"} flexDirection={{md:"row",sm:"column"}} width="100%" minHeight={{xs: "auto", sm: "calc(100vh - 350px)"}}>
         <Box width={{ md: "50%", sm: "100%" }} sx={{  margin: "auto 0" }} textAlign={"center"}>
           <Typography
             color={"primary.main"}
@@ -100,20 +101,17 @@ export default function Home() {
           <Typography color={"grey.main"} my={2}>
             Find your perfectly suited watch and get it with a discount
           </Typography>
-          <Typography variant='body2' my={5}>
+          <Typography variant='body2' my={{xs: 3, sm: 4, md: 5}}>
             GET A DISCOUNT →
           </Typography>
         </Box>
         <Box
           position={"relative"}
           width={{ md: "50%", sm: "100%" }}
-          // height={"400px"}
+          height={{xs: "200px", sm: "300px", md: "auto"}}
         >
           <Image
             src={brand7}
-            // style={{
-            //   width: "100%", minHeight: "100%"
-            // }}
             alt=""
             fill
           />
@@ -126,7 +124,7 @@ export default function Home() {
           padding: ".3px"
         }}
       />
-      <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ margin: "30px 0" }}>
+      <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ my: {xs: "15px", sm: "25px", md: "30px"} }}>
         CHOOSE YOUR WATCH
       </Typography>
       <Divider
@@ -137,7 +135,7 @@ export default function Home() {
       />
 
       {/* FOR HER AND HIM */}
-      <div>
+      <Box>
 
         <Grid container >
           <Grid item
@@ -154,14 +152,14 @@ export default function Home() {
               xs: "none",
             }}
             position={"relative"}
-            minHeight={"calc(100vh - 250px)"}
+            minHeight={{xs: "250px", sm: "350px", md: "calc(100vh - 250px)"}}
           >
-            <Box zIndex="999" position={"absolute"} marginLeft={"70%"} marginTop={"15em"}>
-              <div style={{ display: "flex" }}>
+            <Box zIndex="999" position={"absolute"} ml={{xs: "10%", sm: "20%", md: "70%"}} mt={{xs: "5em", sm: "10em", md: "15em"}}>
+              <Stack direction={"row"}>
                 <Typography variant='h4' fontFamily={"Barlow Condensed"}
                   fontStyle="italic">for</Typography>
                 <Typography variant='h4' pl={1.5} fontWeight={600}>HER</Typography>
-              </div>
+              </Stack>
               <Button
                 variant="text"
                 sx={{
@@ -194,14 +192,14 @@ export default function Home() {
               md: 1,
               xs: "none",
             }}
-            minHeight={"calc(100vh - 250px)"}
+            minHeight={{xs: "250px", sm: "350px", md: "calc(100vh - 250px)"}}
             position={"relative"}>
-            <Box zIndex="999" position={"absolute"} marginTop={"15em"} marginLeft={"1em"}>
-              <div style={{ display: "flex" }}>
+            <Box zIndex="999" position={"absolute"} mt={{xs: "5em", sm: "10em", md: "15em"}} ml={{xs: "10%", sm: "20%", md: "1em"}}>
+              <Stack direction={"row"}>
                 <Typography variant='h4' fontFamily={"Barlow Condensed"}
                   fontStyle="italic">for</Typography>
                 <Typography variant='h4' pl={1.5} fontWeight={600}>HIM</Typography>
-              </div>
+              </Stack>
               <Button
                 variant="text"
                 sx={{
@@ -229,9 +227,9 @@ export default function Home() {
           <Grid item md={3} sm={6} xs={12} display={"flex"} justifyContent={"center"} alignItems={"center"} sx={{
        color: "#fff",
           }}
-            width={{md:"100%",sm:"25%"}}
-            padding={{ md: "1em 0", sm: "0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"}>
-            <LocalShippingIcon fontSize={"large"} sx={{ padding: "0 10px 0 0 " }} />
+            width={{xs: "100%", sm: "50%", md: "25%"}} // Adjusted width for responsiveness
+            padding={{ xs: "1em 0", sm: "1em 0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"}>
+            <LocalShippingIcon fontSize={"large"} sx={{ pr: "10px" }} />
             <div>
               <Typography color={"primary.main"} fontWeight={900}>
                 FREE SHIPPING
@@ -245,9 +243,9 @@ export default function Home() {
           <Grid item md={3} sm={6} xs={12} display={"flex"} justifyContent={"center"} alignItems={"center"} sx={{
             color: "#fff",
           }}
-            width={{ md: "100%", sm: "25%" }}
-            padding={{ md: "1em 0", sm: "0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"}>
-            <CurrencyRupeeIcon fontSize={"large"} sx={{ padding: "0 10px 0 0 " }} />
+            width={{xs: "100%", sm: "50%", md: "25%"}} // Adjusted width for responsiveness
+            padding={{ xs: "1em 0", sm: "1em 0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"}>
+            <CurrencyRupeeIcon fontSize={"large"} sx={{ pr: "10px" }} />
             <div>
               <Typography color={"primary.main"} fontWeight={900}>
                 MONEY GUARANTEE
@@ -261,9 +259,9 @@ export default function Home() {
           <Grid item md={3} sm={6} xs={12} display={"flex"} justifyContent={"center"} alignItems={"center"} sx={{
             color: "#fff",
           }}
-            width={{ md: "100%", sm: "25%" }}
-            padding={{ md: "1em 0", sm: "0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"}>
-            <AdminPanelSettingsOutlinedIcon fontSize={"large"} sx={{ padding: "0 10px 0 0 " }} />
+            width={{xs: "100%", sm: "50%", md: "25%"}} // Adjusted width for responsiveness
+            padding={{ xs: "1em 0", sm: "1em 0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"}>
+            <AdminPanelSettingsOutlinedIcon fontSize={"large"} sx={{ pr: "10px" }} />
             <div>
               <Typography color={"primary.main"} fontWeight={900}>
                 SAFE SHOPPING
@@ -277,10 +275,10 @@ export default function Home() {
           <Grid item md={3} sm={6} xs={12} display={"flex"} justifyContent={"center"} alignItems={"center"} sx={{
             color: "#fff",
           }}
-            width={{ md: "100%", sm: "25%" }}
-            padding={{ md: "1em 0", sm: "0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"} 
+            width={{xs: "100%", sm: "50%", md: "25%"}} // Adjusted width for responsiveness
+            padding={{ xs: "1em 0", sm: "1em 0" }} borderBottom={{ md: "1px solid grey" }} border={".3px solid grey"} 
           >
-            <SupportAgentIcon fontSize={"large"} sx={{ padding: "0 10px 0 0 " }} />
+            <SupportAgentIcon fontSize={"large"} sx={{ pr: "10px" }} />
             <div>
               <Typography color={"primary.main"} fontWeight={900} >
                 ONLINE SUPPORT
@@ -292,7 +290,7 @@ export default function Home() {
           </Grid>
 
         </Grid>
-      </div>
+      </Box>
 
       <Divider
         sx={{
@@ -300,7 +298,7 @@ export default function Home() {
           padding: ".3px"
         }}
       />
-      <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ margin: "30px 0" }}>
+      <Typography variant='h4' fontWeight={400} textAlign={"center"} sx={{ my: {xs: "15px", sm: "25px", md: "30px"} }}>
         POPULAR WATCHES
       </Typography>
       <Divider
@@ -349,6 +347,6 @@ export default function Home() {
         </Grid>
       </Grid>
 
-    </div>
+    </Box>
   )
 }

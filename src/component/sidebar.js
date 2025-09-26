@@ -25,17 +25,30 @@ const Sidebar = ({ open, close, anchor }) => {
     const dispatch = useDispatch();
     const router = useRouter();
     return (
-        <Drawer open={open} onClose={close} anchor={anchor}>
+        <Drawer open={open} onClose={close} anchor={anchor} PaperProps={{ sx: { width: {xs: "250px", sm: "300px"} } }}>
             <Box>
 
 
                 {anchor === "left" && (
                     <List>
+                        <ListItem sx={{bgcolor: "primary.main"}}>
+                            <ListItemText
+                                disableTypography
+                                sx={{
+                                    fontSize: {xs: "1.2rem", sm: "1.5rem"},
+                                }}
+                            >
+                                <Typography variant="h6" color="#fff" fontWeight={700}>Watch Store</Typography>
+                            </ListItemText>
+                            <ListItemIcon sx={{minWidth: "fit-content", cursor: "pointer", ml: 2}} onClick={close}>
+                                <CloseIcon sx={{fontSize: {xs: "1.2rem", sm: "1.5rem"}, color: "#fff"}}/>
+                            </ListItemIcon>
+                        </ListItem>
                         {["HOME", "ABOUT", "DELIVERY", "CONTACTS"].map((text) => (
                             <ListItem key={text} disablePadding>
                                 <ListItemButton>
                                     <Link
-                                        style={{
+                                        sx={{
                                             width: "100%",
                                         }}
                                         href={text === "HOME" ? "/" : `/${text.toLowerCase()}`}
@@ -43,7 +56,7 @@ const Sidebar = ({ open, close, anchor }) => {
                                         <Typography
                                             variant="subtitle2"
                                             color={router.pathname == "/" ? "primary.main" : "grey.main"}
-                                            fontSize={12}
+                                            fontSize={{xs: 12, sm: 14}} // Made font size responsive
                                         >
                                             {text}
                                         </Typography>
@@ -56,38 +69,34 @@ const Sidebar = ({ open, close, anchor }) => {
 
                 {anchor === "right" && (
                     <List>
-                        <ListItem>
+                        <ListItem sx={{bgcolor: "primary.main"}}>
                             <ListItemText
                                 disableTypography
                                 sx={{
-                                    fontSize: "1.5rem",
+                                    fontSize: {xs: "1.2rem", sm: "1.5rem"},
                                 }}
                             >
-                                Cart
+                                <Typography variant="h6" color="#fff" fontWeight={700}>Watch Store</Typography>
                             </ListItemText>
-                            <ListItemIcon
-                                sx={{
-                                    minWidth: "fit-content",
-                                    cursor: "pointer",
-                                }}
-                                onClick={close}
-                            >
-                                <CloseIcon />
+                            <ListItemIcon sx={{minWidth: "fit-content", cursor: "pointer", ml: 2}} onClick={close}>
+                                <CloseIcon sx={{fontSize: {xs: "1.2rem", sm: "1.5rem"}, color: "#fff"}}/>
                             </ListItemIcon>
                         </ListItem>
 
                         {cartValue.length > 0 && (
                             <Box>
-                                <ListItem>
+                                <ListItem sx={{p: 0}}> // Adjusted padding
                                     <List
                                         sx={{
                                             borderBottom: 1,
                                             borderColor: `${grey[300]} !important`,
+                                            width: "100%", // Ensure list takes full width
+                                            p: 0, // Removed extra padding
                                         }}>
                                         {cartValue?.map((db, idx) => (
                                             <ListItem key={idx}>
-                                                <Stack direction="row" width={"100%"}>
-                                                    <Box width={"80px"}>
+                                                <Stack direction="row" width={"100%"} alignItems="center" spacing={2}> // Added spacing
+                                                    <Box sx={{ width: {xs: "60px", sm: "80px"}, flexShrink: 0 }}> // Made width responsive and added flexShrink
                                                         <img
                                                             src={Watches[db]["src"][0]}
                                                             style={{
@@ -95,21 +104,25 @@ const Sidebar = ({ open, close, anchor }) => {
                                                             }}
                                                         />
                                                     </Box>
-                                                    <Stack>
+                                                    <Stack flexGrow={1}> // Allow stack to grow
                                                         <Typography
                                                             color="primary.main"
                                                             variant="subtitle1"
+                                                            fontSize={{xs: "0.9rem", sm: "1rem"}} // Made font size responsive
                                                         >
                                                             {db}
                                                         </Typography>
-                                                        <Typography color="grey.main" variant="subtitle1">
+                                                        <Typography color="grey.main" variant="subtitle1"
+                                                            fontSize={{xs: "0.8rem", sm: "0.9rem"}} // Made font size responsive
+                                                        >
                                                             1 x ₹{Watches[db]["price"]}
                                                         </Typography>
                                                     </Stack>
                                                     <ListItemIcon
                                                         onClick={() => dispatch(cartActions.removeItem({ name: db, price: + Watches[db]["price"] }))}
+                                                        sx={{minWidth: "fit-content"}} // Adjusted minWidth
                                                     >
-                                                        <CloseIcon />
+                                                        <CloseIcon sx={{fontSize: {xs: "1rem", sm: "1.2rem"}}} /> // Made font size responsive
                                                     </ListItemIcon>
                                                 </Stack>
                                             </ListItem>
@@ -122,10 +135,13 @@ const Sidebar = ({ open, close, anchor }) => {
                                             variant="subtitle1"
                                             color={grey[600]}
                                             fontWeight={800}
+                                            fontSize={{xs: "1rem", sm: "1.1rem"}} // Made font size responsive
                                         >
                                             Subtotal:
                                             <Typography
+                                                component="span" // Changed to span to keep on same line
                                                 color={"grey.main"}
+                                                ml={1} // Added margin left
                                             >
                                                 ₹{totalPrice}
                                             </Typography>
@@ -134,7 +150,7 @@ const Sidebar = ({ open, close, anchor }) => {
                                 </ListItem>
 
                                 <ListItem onClick={close}>
-                                    <Link href="/cart">
+                                    <Link href="/cart" style={{width: "100%", textDecoration: "none"}}> // Added full width
                                         <ListItemButton
                                             sx={{
                                                 borderRadius: 1,
@@ -142,7 +158,7 @@ const Sidebar = ({ open, close, anchor }) => {
                                                 justifyContent: "center",
                                                 color: "#fff",
                                                 bgcolor: "#27d18b",
-                                                width: "200px",
+                                                width: "100%", // Made width responsive
                                                 mx: "auto",
                                                 "&:hover": {
                                                     bgcolor: "#78e6b9",
@@ -152,6 +168,7 @@ const Sidebar = ({ open, close, anchor }) => {
 
 
                                             <ListItemIcon
+                                                sx={{color: "#fff"}} // Ensure icon color is white
                                             >
                                                 <ShoppingCartOutlinedIcon />
                                             </ListItemIcon>
@@ -164,10 +181,10 @@ const Sidebar = ({ open, close, anchor }) => {
                         )}
 
                         {cartValue.length === 0 && (
-                            <ListItem>
+                            <ListItem sx={{justifyContent: "center"}}> // Adjusted padding and centered
                                 <ListItemText
                                     disableTypography
-                                    sx={{ color: "grey.main", fontSize: "1.2rem" }}
+                                    sx={{ color: "grey.main", fontSize: {xs: "1rem", sm: "1.2rem"}, textAlign: "center" }} // Made font size responsive and centered text
                                 >
                                     No products in the cart.
                                 </ListItemText>

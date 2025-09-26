@@ -1,18 +1,18 @@
 import React from 'react'
-import { Typography, Stack, Divider, Grid } from "@mui/material";
+import { Typography, Stack, Divider, Grid, Box } from "@mui/material";
 const Delivery = () => {
     return (
-        <div>
-            <div style={{ textAlign: "center", margin: "7em 0" }}>
+        <Box>
+            <Box sx={{ textAlign: "center", my: {xs: 4, sm: 6, md: 8} }}>
                 <Typography variant='h4' fontWeight={600} >
                     DELIVERY AND RETURNS
                 </Typography>
                 <Typography color={"grey.main"} variant="h6" fontWeight={400} my={4}>
                     See below for information about the delivery & returns options in your country.
                 </Typography>
-            </div>
-            <Grid container sx={{ padding: "0 3em", marginBottom: "4em", justifyContent: "space-between" }}>
-                <Grid item xs={12} sm={5} style={{ borderTop: "1.2px solid grey", borderBottom: "1.2px solid grey" }}>
+            </Box>
+            <Grid container sx={{ px: {xs: 2, sm: 3, md: 6}, mb: {xs: 2, sm: 3, md: 4}, justifyContent: "space-between" }}>
+                <Grid item xs={12} sm={5.8} sx={{ borderTop: "1.2px solid grey", borderBottom: "1.2px solid grey" }}>
                     <Stack direction={"row"} mt={3} justifyContent={"space-between"}>
                         <Typography fontWeight={600} variant="h6">
                             STANDARD DELIVERY
@@ -52,7 +52,7 @@ const Delivery = () => {
                 </Grid>
 
 
-                <Grid item xs={12} sm={5} sx={{ borderTop: "1.2px solid grey", borderBottom: "1.2px solid grey" }}>
+                <Grid item xs={12} sm={5.8} sx={{ borderTop: "1.2px solid grey", borderBottom: "1.2px solid grey", mt: {xs: 3, sm: 0} }}>
                     <Stack direction={"row"} mt={3} justifyContent={"space-between"}>
                         <Typography fontWeight={600} variant="h6">
                             EXPRESS DELIVERY
@@ -92,7 +92,7 @@ const Delivery = () => {
                 </Grid>
 
             </Grid>
-        </div>
+        </Box>
     )
 }
 

@@ -30,9 +30,9 @@ const Contacts = () => {
                 </Typography>
             </Stack>
 
-            <Grid container >
+            <Grid container px={{xs: 2, sm: 4, md: 8}}>
                 <Grid item xs={12} sm={6} sx={{ paddingTop: "1.5em" }}>
-                    <Stack direction={"column"} gap={3} mx={4}>
+                    <Stack direction={"column"} gap={3} mx={{xs: 0, sm: 2, md: 4}}>
                         <TextField label="Name"
                             size="small"
                             variant="outlined"
@@ -47,7 +47,7 @@ const Contacts = () => {
                             placeholder="Please Enter Your Email" required />
                     </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} m={{ xs: 1, sm: 0 }}>
+                <Grid item xs={12} sm={6} sx={{mx: {xs: 0, sm: 2, md: 4}, pt: {xs: "1.5em", sm: "1.5em", md: "1.5em"} }}>
                     <label htmlFor="review" style={{ fontSize: "0.9rem" }}>
                         Message *
                     </label>
@@ -55,7 +55,7 @@ const Contacts = () => {
                         aria-label="Message"
                         minRows={10}
                         placeholder="Please Enter Your Message"
-                        style={{
+                        sx={{
                             width: "100%",
                             color: grey[600],
                             transition: "200ms",

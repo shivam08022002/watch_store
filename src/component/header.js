@@ -41,7 +41,7 @@ const Header = () => {
   
     return (
         <div>
-            <div style={{
+            <Box sx={{
                 padding: "5px 0",
                 borderBottom: "1.2px solid gray"
             }}>
@@ -49,11 +49,11 @@ const Header = () => {
                     
                     <Grid item
                         display={{ xs: "none", md: "flex", }} 
-                        width={{md:"20%",sm:"18%"}}
+                        width={{md:"20%",sm:"25%", xs: "100%"}}
                             sx={{ alignItems: "center" }}
                         >
                             <Stack direction="row"
-                                spacing={1}
+                                spacing={{xs: 1, sm: 1.5, md: 2}} 
                                 sx={{ fontWeight: 'medium', flexWrap: "wrap" }}>
                                 <Link href="/" color="grey.main" sx={{ textDecoration: "none" }} >
                                     <Typography color={router.pathname == "/" ? "primary.main" : "grey.main"} fontWeight={600}
@@ -76,9 +76,9 @@ const Header = () => {
 
                   
                     <Grid item display={{ md: "none" }}
-                        sx={{  borderRight: "1px solid grey", width: "10%" }}>
+                        sx={{  borderRight: "1px solid grey", width: "auto" }}>
                             <IconButton
-                                sx={{}}
+                                sx={{p: 1.5, fontSize: "2rem"}}
                                 onClick={() =>
                                     setSideBar(
                                         (prev) =>
@@ -95,8 +95,8 @@ const Header = () => {
                     
 
                     <Grid item
-                        width={{ md: "65%", sm: "60%", xs: "90%" }}
-                        // borderBottom={{ md: "none", xs:"1px solid grey"}}
+                        width={{ md: "65%", sm: "50%", xs: "100%" }}
+                        flexGrow={1}
                         sx={{ alignItems: "center" }}
                     >
                         <Stack direction="row" sx={{ alignContent: "center" }} justifyContent={{sm:"space-around",xs:"center",md:"center"}}
@@ -105,22 +105,13 @@ const Header = () => {
                                 orientation="vertical"
                                 flexItem
                                 sx={{
-                                    marginRight: "20px",
+                                    mr: {xs: "10px", md: "20px"}, 
                                     bgcolor: "grey.main",
                                     padding: ".3px",
                                     display:{xs:"none",md:"block"}
                                 }}
                             />
-                            <Typography
-                                fontSize={12}
-                                fontWeight={400}
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}>
-                                <PhoneIphoneIcon />
-                                +95 8510881234
-                            </Typography>
+
                        
                             <Typography
                                 display={{xs:"none",md:"flex"}}
@@ -145,7 +136,7 @@ const Header = () => {
                                 flexItem
                                 sx={{
                                     bgcolor: "grey.main",
-                                    marginLeft: "20px",
+                                    ml: {xs: "10px", md: "20px"}, 
                                     padding: ".3px",
                                     display: { xs: "none", md: "block" }
                                 }}
@@ -154,55 +145,56 @@ const Header = () => {
 
                     </Grid>
 
-                    <Grid item
-                        display={{ xs: "none",sm:"flex" }}
-                        width={{ md: "15%", xs: "30%", sm: "30%" }}
-                        borderLeft={{ sm: "1px solid grey", md: "none" }}
-                        sx={{ textAlign: "right" }}
-                        justifyContent={"right"}
-                        // sx={{ width: `${isTablet ? "30%" : "10%"}` }}
-                    >
-                        <Box sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                            color: "grey",
-                            flexWrap: "wrap",
-                            fontSize: "0.6rem",
-                            textAlign:"right"
-                        }} >
-                            GET SOCIAL:
-                            <LinkedInIcon />
-                            <InstagramIcon />
-                            <TwitterIcon />
-                        </Box>
-                    </Grid>
+
                 </Grid>
              
-                <Box display={{ xs: "flex", sm: "none" }} justifyContent={"space-around"}
+                <Box display={{ xs: "flex", sm: "none" }} justifyContent={"center"}
                     borderBottom={{ xs: "1px solid grey" }}>
-                        <Typography py={2}>
-                            Login / Register
-                        </Typography>
-                        <Divider orientation="vertical" flexItem
+                        <Stack direction="row" justifyContent="space-evenly" width="100%" py={2}
                             sx={{
-                                // color: "grey.main",
-                                padding: ".9px"
-                            }} />
-                        <div style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                            color: "grey",
-                            flexWrap: "wrap",
-                            fontSize: "0.6rem",
-                            padding: "2em 0"
-                        }}>
-                            GET SOCIAL:
-                            <LinkedInIcon />
-                            <InstagramIcon />
-                            <TwitterIcon />
-                        </div>
+                                flexDirection: "row",
+                                alignItems: "center", // Center items when stacked vertically
+                                flexWrap: "wrap", // Allow wrapping if space is tight
+                                gap: 1, // Add a small gap between items
+                            }}>
+                            <Typography
+                                fontSize={12}
+                                fontWeight={400}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    mr: 1,
+                                }}>
+                                <PhoneIphoneIcon />
+                                +91 9793681026
+                            </Typography>
+                            <Divider orientation="vertical" flexItem
+                                sx={{
+                                    padding: ".9px",
+                                    display: { xs: "none", sm: "block" }
+                                }} />
+                            <Typography>
+                                Login / Register
+                            </Typography>
+                            <Divider orientation="vertical" flexItem
+                                sx={{
+                                    padding: ".9px",
+                                    display: { xs: "none", sm: "block" }
+                                }} />
+                            <Box sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-evenly",
+                                color: "grey",
+                                flexWrap: "wrap",
+                                fontSize: "0.6rem",
+                            }}>
+                                GET SOCIAL:
+                                <LinkedInIcon />
+                                <InstagramIcon />
+                                <TwitterIcon />
+                            </Box>
+                        </Stack>
                     </Box>
                
                     <Typography
@@ -210,16 +202,17 @@ const Header = () => {
                         color="primary.main"
                         display={{md:"none"}}
                         textAlign={"center"}
-                        // borderBottom={1}
                         fontWeight={600}
                         py={"0.5rem"}
                         sx={{
                             cursor: "pointer",
+                            mt: 2, // Added top margin for spacing
+                            mb: 2, // Added bottom margin for spacing
                         }}
                     >
                         WATCHES E-SHOP 
                     </Typography>
-            </div>
+            </Box>
             <Backdrop
                 open={isSearching}
                 sx={{
@@ -290,14 +283,14 @@ const Header = () => {
             </Backdrop>
 
 
-            <div style={{ borderBottom: "1.3px solid grey" }}>
+            <Box sx={{ borderBottom: "1.3px solid grey" }}>
                 <Grid container>
                     <Grid item
                         md={2}
-                        width={{ xs: "30%", sm: "8%"}}
+                        width={{ xs: "20%", sm: "15%"}}
                         padding={{ xs:"4px 0",sm:"0"}}
                         sx={{
-                        display: "flex", justifyContent: "space-around",
+                        display: "flex", justifyContent: {xs: "center", sm: "space-around"},
                         alignItems: "center", cursor: "pointer",
                     }}
                         onClick={handleToggle}
@@ -313,8 +306,12 @@ const Header = () => {
                             }} />
                     </Grid>
 
-                    <Grid item md={6} width={{ xs: "70%"}} padding={{ xs: "4px 0", sm: "0" }} sx={{ display: "flex", justifyContent: "center", alignContent: "center" }}>
-                        <Stack direction="row" spacing={2}
+                    <Grid item md={6} width={{ xs: "60%", sm: "70%"}} padding={{ xs: "4px 0", sm: "0" }} sx={{ display: "flex", justifyContent: {xs: "center", sm: "center"}, alignContent: "center" }}>
+                        <Stack direction="row" spacing={{xs: 1, sm: 2, md: 3}}
+                            sx={{
+                                flexWrap: "wrap", // Allow items to wrap on smaller screens
+                                justifyContent: "center", // Center items when wrapped
+                            }}
                         >
                             <Link href='/shop' sx={{ textDecoration: "none" }}>
                                 <Typography color="#000000" fontSize={{ xs: "12px", sm: "16px" }} fontWeight={{ xs: 600}} >WOMEN</Typography>
@@ -334,7 +331,7 @@ const Header = () => {
                         </Stack>
                     </Grid>
                     <Grid item md={2} display={{ sm: "flex", xs: "none" }} justifyContent={"space-evenly"}
-                        width={{  sm: "12%" }} >
+                        width={{  sm: "20%" }} >
                         <Link href="/favorite" >
                             <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
                                 <Divider
@@ -375,7 +372,7 @@ const Header = () => {
                             })
                         )
                     }
-                        width={{sm:"10%"}}
+                        width={{sm:"20%"}}
                         sx={{ cursor: "pointer", justifyContent: "space-evenly" }}>
                         <LocalMallIcon />
                         <Typography variant="body2" fontWeight={600}>
@@ -387,10 +384,10 @@ const Header = () => {
                     </Grid>
 
                     
-                        <Box display={{sm:"none"}}  justifyContent={"space-around"} sx={{ width: "100%", borderTop: "1px solid grey", }} >
-                            <Box item sx={{ display: "flex", justifyContent: "space-evenly", padding: "4px 0" }}>
+                        <Box display={{sm:"none"}}  justifyContent={"center"} sx={{ width: "100%", borderTop: "1px solid grey", flexDirection: "column", alignItems: "center" }} >
+                            <Box sx={{ display: "flex", justifyContent: "center", width: "100%", py: 2 }}>
                                 <Link href="/favorite" >
-                                    <Box sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
+                                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                         <Box color={"grey.main"} sx={{ margin: "0 10px" }}>
                                             <FavoriteBorderIcon />
                                         </Box>
@@ -409,9 +406,10 @@ const Header = () => {
                                 sx={{
                                     bgcolor: "grey.main",
                                     padding: ".3px",
-                                    marginRight: "0px"
+                                    marginRight: "0px",
+                                    height: "100%",
                                 }} />
-                            <Box item onClick={() =>
+                            <Box onClick={() =>
                                 setSideBar(
                                     (prev) =>
                                     (prev = {
@@ -419,7 +417,7 @@ const Header = () => {
                                         side: "right",
                                     })
                                 )
-                            } sx={{ display: "flex", cursor: "pointer", justifyContent: "center", padding: "4px 0", alignItems: "center", gap: ".5em" }}>
+                            } sx={{ display: "flex", cursor: "pointer", justifyContent: "center", padding: "4px 0", alignItems: "center", gap: ".5em", flexGrow: 1 }}>
                                 <LocalMallIcon />
                             <Typography fontSize={{ xs: "12px", sm: "16px" }} variant="body2" fontWeight={600}>
                                     My Cart
@@ -431,7 +429,7 @@ const Header = () => {
                         </Box>
                     
                 </Grid>
-            </div>
+            </Box>
             <Sidebar
                 open={sideBar.open}
                 close={sideBarHandler}

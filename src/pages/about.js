@@ -7,15 +7,16 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 const About = () => {
     return (
-        <Grid container p={1} gap={{ xs: 1, sm: 0, md: 0 }} sx={{ justifyContent: "space-between", }}>
-            <Grid item xs={12} sm={12} md={6} flexDirection={"column"} rowGap={5}>
-                <div style={{ overflow: "hidden", paddingRight: "10px", textAlign: "center" }}>
-                    <Image src={About1} sx={{
+        <Grid container p={{xs: 2, sm: 3, md: 5}} gap={{ xs: 3, sm: 4, md: 5 }} sx={{ justifyContent: "space-between", }}>
+            <Grid item xs={12} sm={12} md={5.8} flexDirection={"column"} rowGap={5}>
+                <Box sx={{ overflow: "hidden", pr: {md: "10px", xs: "0"}, textAlign: "center" }}>
+                    <Image src={About1} style={{
                         width: "100%",
                         height: "100%",
+                        objectFit: "cover"
 
                     }} alt="about1" />
-                </div>
+                </Box>
 
                 <Typography py={2} variant='h4' fontWeight={600} lineHeight={2}>
                     BACKGROUND
@@ -126,13 +127,14 @@ const About = () => {
                     </ListItem>
                 </List>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} position={"relative"} >
-                <div style={{ position: "relative", minHeight: "400px", overflow: "hidden", textAlign: "center" }}>
-                    <Image src={About2} sx={{
+            <Grid item xs={12} sm={12} md={5.8} position={"relative"} >
+                <Box sx={{ position: "relative", minHeight: "400px", overflow: "hidden", textAlign: "center" }}>
+                    <Image src={About2} style={{
                         maxWidth: "100%",
                         minHeight: "100%",
+                        objectFit: "cover"
                     }} alt="about1" />
-                </div>
+                </Box>
                 <Typography variant="h4" py={3.5} color="secondary.main" fontWeight={700}>
                     BE STYLISH!
                 </Typography>
@@ -170,7 +172,7 @@ const About = () => {
                     fontWeight={600}
                     color={"grey.main"}
                 >
-                    +95 8510882843
+                    +91 9793681026
                 </Typography>
                 <Typography
                     variant="h6"
